@@ -1,0 +1,87 @@
+<section
+  class="max-w-screen-xl w-[95%] mx-auto py-16 px-4 md:px-16 grid grid-cols-2 gap-8 items-end"
+>
+  <div class="">
+    <h1 class="text-primero font-bold text-4xl w-2/3">
+      Ahorra costos a largo plazo y ayudanos a cuidar el planeta!
+    </h1>
+    <p class="mb-10 mt-3 text-base text-gray-700 w-2/3">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus nesciunt
+      ea, veritatis omnis minus, repellat magni placeat nam quae eum itaque
+    </p>
+    <a class="bg-segundo py-3 px-6 text-white" href="#"
+      >Ver Comparativas Automaticas
+    </a>
+  </div>
+  <div>
+    <canvas id="carbonFootprint"></canvas>
+  </div>
+</section>
+
+<script>
+  import Chart from "chart.js/auto";
+
+  const labels = [2020, 2021, 2022, 2023];
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Motos (g CO₂/km)",
+        data: [167, 167, 167, 167],
+        fill: false,
+        borderColor: "rgb(54, 162, 235)",
+        tension: 0.1,
+      },
+      {
+        label: "Automóviles (g CO₂/km)",
+        data: [275, 275, 265, 260],
+        fill: false,
+        borderColor: "rgb(255, 99, 132)",
+        tension: 0.1,
+      },
+      {
+        label: "Vehículos de Carga (g CO₂/km)",
+        data: [1000, 1000, 980, 970],
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+    ],
+  };
+
+  const config = {
+    type: "line",
+    data: data,
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: "Emisiones de CO₂ (g/km)",
+        },
+        legend: {
+          display: true,
+          position: "bottom",
+          labels: {
+            font: {
+              size: 10,
+            },
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 750, // Incremento de 250 en el eje Y
+          },
+          title: {
+            display: false,
+            text: "Emisiones de CO₂ (g/km)",
+          },
+        },
+      },
+    },
+  };
+
+  new Chart(document.getElementById("carbonFootprint"), config);
+</script>
