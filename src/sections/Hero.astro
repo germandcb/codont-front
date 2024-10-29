@@ -2,10 +2,10 @@
   class="max-w-screen-xl w-[95%] mx-auto py-16 px-4 md:px-16 grid grid-cols-2 gap-8 items-end"
 >
   <div class="">
-    <h1 class="text-primero font-bold text-4xl w-2/3">
+    <h1 class="text-primero font-bold text-4xl mr-10">
       Ahorra costos a largo plazo y ayudanos a cuidar el planeta!
     </h1>
-    <p class="mb-10 mt-3 text-base text-gray-700 w-2/3">
+    <p class="mb-10 mt-3 text-base text-gray-700 mr-10">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus nesciunt
       ea, veritatis omnis minus, repellat magni placeat nam quae eum itaque
     </p>
@@ -19,7 +19,7 @@
 </section>
 
 <script>
-  import Chart from "chart.js/auto";
+  import Chart, { type ChartConfiguration } from "chart.js/auto";
 
   const labels = [2020, 2021, 2022, 2023];
   const data = {
@@ -49,7 +49,7 @@
     ],
   };
 
-  const config = {
+  const config: ChartConfiguration = {
     type: "line",
     data: data,
     options: {
@@ -83,5 +83,7 @@
     },
   };
 
-  new Chart(document.getElementById("carbonFootprint"), config);
+  const canvas = document.getElementById("carbonFootprint") as HTMLCanvasElement;
+
+  let grafico = new Chart(canvas, config);
 </script>
