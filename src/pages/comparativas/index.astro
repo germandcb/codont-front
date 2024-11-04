@@ -1,0 +1,83 @@
+---
+import Tabla from "../../components/Tabla.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Boxer CT 100 vs Boxer CT 100">
+  <div class="max-w-screen-lg w-[80%] mx-auto mt-16">
+    <a
+      href="/"
+      class="bg-segundo py-3 px-6 text-white rounded-full hover:bg-tercero transition-all"
+      >Volver</a
+    >
+  </div>
+  <main class="max-w-screen-lg w-[80%] mx-auto flex items-center pt-16">
+    <section class="text-center w-[45%]">
+      <h2 class="text-xl font-bold text-segundo mt-3">Boxer CT 100</h2>
+      <Tabla />
+    </section>
+    <span class="font-extrabold text-4xl text-tercero px-4">VS</span>
+    <section class="text-center w-[45%]">
+      <h2 class="text-xl font-bold text-segundo mt-3">Boxer CT 100</h2>
+      <Tabla />
+    </section>
+  </main>
+  <section class="max-w-screen-sm w-[80%] mx-auto pt-16">
+    <canvas id="comparativa-boxer"></canvas>
+  </section>
+</Layout>
+<script>
+  import Chart, { scales, type ChartConfiguration } from "chart.js/auto";
+
+  const labels = [
+    "Consumo de Combustible",
+    "Emisión de CO₂",
+    "Capacidad de Carga",
+  ];
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Boxer CT 100",
+        data: [1.8, 80, 50],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+      },
+      {
+        label: "Boxer CT 100",
+        data: [5, 50, 100],
+        borderColor: "rgb(54, 162, 235)",
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+      },
+    ],
+  };
+
+  const config = {
+    type: "radar",
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: false,
+          text: "Chart.js Radar Chart",
+        },
+      },
+      scales: {
+        r: {
+          angleLines: {
+            display: false,
+          },
+          max: 100,
+          min: 0,
+          ticks: {
+            stepSize: 20,
+          },
+        },
+      },
+    },
+  };
+
+  const ctx = document.getElementById("comparativa-boxer");
+  new Chart(ctx, config);
+</script>
