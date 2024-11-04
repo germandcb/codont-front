@@ -1,6 +1,24 @@
-<section id="comparativas-recomendadas" class="max-w-screen-xl w-[95%] mx-auto py-16 px-4 flex items-center flex-col">
+---
+import CardComparativa from "../components/CardComparativa.astro";
+---
+
+<section
+  id="comparativas-recomendadas"
+  class="max-w-screen-xl w-[95%] mx-auto py-16 px-4 flex items-center flex-col"
+>
   <h2 class="text-primero font-bold text-4xl text-center">
     Comparativas recomendadas
   </h2>
-  <p class="w-2/3 mt-3 text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam voluptates, veritatis voluptatem soluta repellendus accusamus voluptatum harum dolore</p>
+  <p class="w-2/3 mt-3 text-center">
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
+    voluptates, veritatis voluptatem soluta repellendus accusamus voluptatum
+    harum dolore
+  </p>
+
+  <div class="flex py-10 flex-wrap gap-4 justify-center">
+    <CardComparativa />
+    <CardComparativa />
+    <CardComparativa />
+    <CardComparativa />
+  </div>
 </section>
