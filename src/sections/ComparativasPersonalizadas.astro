@@ -10,4 +10,59 @@
     voluptates, veritatis voluptatem soluta repellendus accusamus voluptatum
     harum dolore
   </p>
+
+  <form class="flex items-center justify-center gap-4 mt-6">
+    <div>
+      <label
+        for="kilometraje"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >kilometraje a Recorrer</label
+      >
+      <input
+        type="number"
+        id="kilometraje"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tercero focus:border-tercero block w-full p-2.5"
+        placeholder="Escribe los kilometros"
+        required
+      />
+    </div>
+    <div>
+      <label
+        for="eficiencia"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Indique la eficiencia</label
+      >
+      <input
+        type="number"
+        id="eficiencia"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tercero focus:border-tercero block w-full p-2.5"
+        placeholder="Escribe la eficiencia"
+        required
+      />
+    </div>
+    <div>
+      <label
+        for="combustible"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Tipo de combustible</label
+      >
+      <select
+        id="combustible"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tercero focus:border-tercero block w-full p-2.5"
+        required
+      >
+        <option value="">Seleccione el tipo de combustible</option>
+        <option value="gasolina">Gasolina</option>
+        <option value="diesel">Diesel</option>
+      </select>
+    </div>
+    <div class="mt-6">
+      <button
+        type="submit"
+        class="w-full text-white bg-tercero hover:bg-tercero-dark focus:ring-4 focus:outline-none focus:ring-tercero-light font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
 </section>
