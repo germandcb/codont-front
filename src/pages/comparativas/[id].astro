@@ -10,13 +10,19 @@ export async function getStaticPaths() {
   return comparativas.map( comparativa => {
     return {
       params: { id: comparativa.comparativa_id.toString() },
-      props: comparativa
+      props: {comparativa}
     }
   })
 }
+
+const {comparativa} = Astro.props
+console.log(comparativa)
+
+const {vehiculo_id_1, vehiculo_id_2} = comparativa
+
 ---
 
-<Layout title="Boxer CT 100 vs Boxer CT 100">
+<Layout title= `${vehiculo_id_1.marca} vs ${vehiculo_id_2.marca}`>
   <div class="max-w-screen-lg w-[80%] mx-auto mt-16">
     <a
       href="/"
@@ -26,13 +32,13 @@ export async function getStaticPaths() {
   </div>
   <main class="max-w-screen-lg w-[80%] mx-auto flex items-center pt-16">
     <section class="text-center w-[45%]">
-      <h2 class="text-xl font-bold text-segundo mt-3">Boxer CT 100</h2>
-      <Tabla />
+      <h2 class="text-xl font-bold text-segundo mt-3">{vehiculo_id_1.marca} {vehiculo_id_1.modelo}</h2>
+      <Tabla vehiculo={vehiculo_id_1}/>
     </section>
     <span class="font-extrabold text-4xl text-tercero px-4">VS</span>
     <section class="text-center w-[45%]">
-      <h2 class="text-xl font-bold text-segundo mt-3">Boxer CT 100</h2>
-      <Tabla />
+      <h2 class="text-xl font-bold text-segundo mt-3">{vehiculo_id_2.marca} {vehiculo_id_2.modelo}</h2>
+      <Tabla vehiculo={vehiculo_id_2}/>
     </section>
   </main>
   <section class="max-w-screen-sm w-[80%] mx-auto pt-16">
