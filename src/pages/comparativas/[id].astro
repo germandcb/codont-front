@@ -1,6 +1,19 @@
 ---
 import Tabla from "../../components/Tabla.astro";
 import Layout from "../../layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import { getComparativas } from "../../lib/getComparativas";
+
+export async function getStaticPaths() {
+  const comparativas = await getComparativas();
+
+  return comparativas.map( comparativa => {
+    return {
+      params: { id: comparativa.comparativa_id.toString() },
+      props: comparativa
+    }
+  })
+}
 ---
 
 <Layout title="Boxer CT 100 vs Boxer CT 100">
