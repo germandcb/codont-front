@@ -52,7 +52,7 @@ import Layout from "../../layouts/Layout.astro";
     ],
   };
 
-  const config = {
+  const config: ChartConfiguration = {
     type: "radar",
     data: data,
     options: {
@@ -78,6 +78,6 @@ import Layout from "../../layouts/Layout.astro";
     },
   };
 
-  const ctx = document.getElementById("comparativa-boxer");
+  const ctx = document.getElementById("comparativa-boxer") as HTMLCanvasElement;
   new Chart(ctx, config);
 </script>

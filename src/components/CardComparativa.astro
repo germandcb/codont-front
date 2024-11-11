@@ -1,23 +1,36 @@
+---
+const { id, vehiculo1, vehiculo2 } = Astro.props;
+
+console.log(id, vehiculo1, vehiculo2);
+---
+
 <article
   class="bg-gray-50/50 transition-all hover:border-cuarto hover:shadow-md shadow-sm border-2 border-gray-300 rounded-lg px-5 py-4"
 >
   <main class="flex items-center">
     <section class="text-center">
-      <p class="bg-blue-500 text-white rounded-md">Moto</p>
-      <h2 class="text-xl font-bold text-segundo mt-3">Boxer CT 100</h2>
-      <p class="text-gray-700">Año 2000</p>
-      <p class="text-gray-700">CO2 80 ppm</p>
+      <!-- <p class="bg-blue-500 text-white rounded-md">Moto</p> -->
+      <h2 class="text-xl font-bold text-segundo mt-3">
+        {vehiculo1.marca}
+        {vehiculo1.modelo}
+      </h2>
+      <p class="text-gray-700">Año {vehiculo1.anio}</p>
+      <p class="text-gray-700">CO₂ {vehiculo1.eficiencia}</p>
     </section>
     <span class="font-extrabold text-4xl text-tercero px-4">VS</span>
     <section class="text-center">
-      <p class="bg-blue-500 text-white rounded-md">Moto</p>
-      <h2 class="text-xl font-bold text-segundo mt-3">Boxer CT 100</h2>
-      <p class="text-gray-700">Año 2000</p>
-      <p class="text-gray-700">CO2 80 ppm</p>
+      <!-- <p class="bg-blue-500 text-white rounded-md">Moto</p> -->
+      <h2 class="text-xl font-bold text-segundo mt-3">
+        {vehiculo2.marca}
+        {vehiculo2.modelo}
+      </h2>
+      <p class="text-gray-700">Año {vehiculo2.anio}</p>
+      <p class="text-gray-700">CO₂ {vehiculo2.eficiencia}</p>
     </section>
   </main>
   <footer>
     <a
+      href={`/comparativa/${id}`}
       class="bg-segundo hover:bg-tercero transition-all block py-2 text-center text-white rounded-md mt-4 cursor-pointer"
     >
       Ver comparativa

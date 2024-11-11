@@ -1,5 +1,8 @@
 ---
 import CardComparativa from "../components/CardComparativa.astro";
+import { getComparativas } from "../lib/getComparativas";
+
+const comparativasAutomaticas = await getComparativas();
 ---
 
 <section
@@ -16,9 +19,18 @@ import CardComparativa from "../components/CardComparativa.astro";
   </p>
 
   <div class="flex py-10 flex-wrap gap-4 justify-center">
-    <CardComparativa />
-    <CardComparativa />
-    <CardComparativa />
-    <CardComparativa />
+    {
+      comparativasAutomaticas.map((comparativa) => {
+        const { comparativa_id, vehiculo_id_1, vehiculo_id_2 } = comparativa;
+        // console.log(comparativa_id)
+        return (
+          <CardComparativa
+            id={comparativa_id}
+            vehiculo1={vehiculo_id_1}
+            vehiculo2={vehiculo_id_2}
+          />
+        );
+      })
+    }
   </div>
 </section>
