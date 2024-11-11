@@ -23,13 +23,12 @@ const {vehiculo} = Astro.props;
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
           Consumo de Combustible (L/100Km)
         </th>
-        <td class="px-6 py-4"> {vehiculo.consumo_combustible} </td>
-      </tr>
+        <td class="px-6 py-4"> {vehiculo.eficiencia} </td>
       <tr class="border-b border-gray-200">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
-          Capacidad de Carga
+          Capacidad de Carga (kg)
         </th>
-        <td class="px-6 py-4"> 50kg </td>
+        <td class="px-6 py-4"> {vehiculo.capacidad_carga} </td>
       </tr>
       <tr class="border-b border-gray-200">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
@@ -47,13 +46,13 @@ const {vehiculo} = Astro.props;
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
           Tipo de Combustible
         </th>
-        <td class="px-6 py-4"> PENDIENTE </td>
+        <td class="px-6 py-4"> {vehiculo.tipo_combustible} </td>
       </tr>
       <tr class="border-b border-gray-200">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
           Tipo de Vehiculo
         </th>
-        <td class="px-6 py-4"> PENDIENTE </td>
+        <td class="px-6 py-4"> {vehiculo.tipo_vehiculo} </td>
       </tr>
     </tbody>
   </table>
