@@ -7,16 +7,22 @@ import { getComparativas } from "../../lib/getComparativas";
 export async function getStaticPaths() {
   const comparativas = await getComparativas();
 
-  return comparativas.map( comparativa => {
+  return comparativas.map((comparativa) => {
     return {
       params: { id: comparativa.comparativa_id.toString() },
-      props: comparativa
-    }
-  })
+      props: { comparativa },
+    };
+  });
 }
+
+const { comparativa } = Astro.props;
+
+const { vehiculo_id_1, vehiculo_id_2 } = comparativa;
+const labels = ["Consumo de Combustible", "Emisión de CO₂", "Capacidad de Carga"];
+
 ---
 
-<Layout title="Boxer CT 100 vs Boxer CT 100">
+<Layout title= `${vehiculo_id_1.marca} vs ${vehiculo_id_2.marca}`}>
   <div class="max-w-screen-lg w-[80%] mx-auto mt-16">
     <a
       href="/"
@@ -26,71 +32,94 @@ export async function getStaticPaths() {
   </div>
   <main class="max-w-screen-lg w-[80%] mx-auto flex items-center pt-16">
     <section class="text-center w-[45%]">
-      <h2 class="text-xl font-bold text-segundo mt-3">Boxer CT 100</h2>
-      <Tabla />
+      <h2 class="text-xl font-bold text-segundo mt-3">{vehiculo_id_1.marca} {vehiculo_id_1.modelo}</h2>
+      <Tabla vehiculo={vehiculo_id_1}/>
     </section>
     <span class="font-extrabold text-4xl text-tercero px-4">VS</span>
     <section class="text-center w-[45%]">
-      <h2 class="text-xl font-bold text-segundo mt-3">Boxer CT 100</h2>
-      <Tabla />
+      <h2 class="text-xl font-bold text-segundo mt-3">{vehiculo_id_2.marca} {vehiculo_id_2.modelo}</h2>
+      <Tabla vehiculo={vehiculo_id_2}/>
     </section>
   </main>
   <section class="max-w-screen-sm w-[80%] mx-auto pt-16">
-    <canvas id="comparativa-boxer"></canvas>
+    <!-- Pasamos los datos JSON al DOM usando data-* -->
+    <canvas id="comparativa-boxer" width="400" height="400" 
+      data-vehiculo1={JSON.stringify(vehiculo_id_1)} 
+      data-vehiculo2={JSON.stringify(vehiculo_id_2)}>
+    </canvas>
   </section>
 </Layout>
+
 <script>
-  import Chart, { scales, type ChartConfiguration } from "chart.js/auto";
+  import Chart from "chart.js/auto";
 
-  const labels = [
-    "Consumo de Combustible",
-    "Emisión de CO₂",
-    "Capacidad de Carga",
-  ];
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: "Boxer CT 100",
-        data: [1.8, 80, 50],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-      },
-      {
-        label: "Boxer CT 100",
-        data: [5, 50, 100],
-        borderColor: "rgb(54, 162, 235)",
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-      },
-    ],
-  };
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtenemos los datos desde los atributos data-* del canvas
+    const canvas = document.getElementById("comparativa-boxer");
+    const vehiculo1 = JSON.parse(canvas.getAttribute("data-vehiculo1"));
+    const vehiculo2 = JSON.parse(canvas.getAttribute("data-vehiculo2"));
 
-  const config: ChartConfiguration = {
-    type: "radar",
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        title: {
-          display: false,
-          text: "Chart.js Radar Chart",
+    console.log(vehiculo1, vehiculo2)
+
+    const labels = [
+      "Consumo de Combustible",
+      "Emisión de CO₂",
+      "Capacidad de Carga",
+    ];
+
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: `${vehiculo1.marca} ${vehiculo1.modelo}`,
+          data: [
+            vehiculo1.consumo_combustible,
+            vehiculo1.eficiencia,
+            vehiculo1.capacidad_carga,
+          ],
+          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
         },
-      },
-      scales: {
-        r: {
-          angleLines: {
+        {
+          label: `${vehiculo2.marca} ${vehiculo2.modelo}`,
+          data: [
+            vehiculo2.consumo_combustible,
+            vehiculo2.eficiencia,
+            vehiculo2.capacidad_carga,
+          ],
+          borderColor: "rgb(54, 162, 235)",
+          backgroundColor: "rgba(54, 162, 235, 0.2)",
+        },
+      ],
+    };
+
+    const config = {
+      type: "radar",
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
             display: false,
+            text: "Comparativa de Vehículos",
           },
-          max: 100,
-          min: 0,
-          ticks: {
-            stepSize: 20,
+        },
+        scales: {
+          r: {
+            angleLines: {
+              display: false,
+            },
+            max: 100,
+            min: 0,
+            ticks: {
+              stepSize: 20,
+            },
           },
         },
       },
-    },
-  };
+    };
 
-  const ctx = document.getElementById("comparativa-boxer") as HTMLCanvasElement;
+    const ctx = document.getElementById("comparativa-boxer") as HTMLCanvasElement;
   new Chart(ctx, config);
+  });
 </script>
