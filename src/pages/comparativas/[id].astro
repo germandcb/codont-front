@@ -17,12 +17,27 @@ export async function getStaticPaths() {
 
 const { comparativa } = Astro.props;
 
-const { vehiculo_id_1, vehiculo_id_2 } = comparativa;
-const labels = ["Consumo de Combustible", "Emisión de CO₂", "Capacidad de Carga"];
+interface Vehiculo {
+  marca: string;
+  modelo: string;
+  consumo_combustible: number;
+  eficiencia: number;
+  capacidad_carga: number;
+}
 
+const { vehiculo_id_1, vehiculo_id_2, comparativa_id } = comparativa as {
+  vehiculo_id_1: Vehiculo;
+  vehiculo_id_2: Vehiculo;
+  comparativa_id: string;
+};
+const labels = [
+  "Consumo de Combustible",
+  "Emisión de CO₂",
+  "Capacidad de Carga",
+];
 ---
 
-<Layout title= `${vehiculo_id_1.marca} vs ${vehiculo_id_2.marca}`}>
+<Layout title=`${vehiculo_id_1.marca} vs ${vehiculo_id_2.marca}` }>
   <div class="max-w-screen-lg w-[80%] mx-auto mt-16">
     <a
       href="/"
@@ -32,34 +47,43 @@ const labels = ["Consumo de Combustible", "Emisión de CO₂", "Capacidad de Car
   </div>
   <main class="max-w-screen-lg w-[80%] mx-auto flex items-center pt-16">
     <section class="text-center w-[45%]">
-      <h2 class="text-xl font-bold text-segundo mt-3">{vehiculo_id_1.marca} {vehiculo_id_1.modelo}</h2>
-      <Tabla vehiculo={vehiculo_id_1}/>
+      <h2 class="text-xl font-bold text-segundo mt-3">
+        {vehiculo_id_1.marca}
+        {vehiculo_id_1.modelo}
+      </h2>
+      <Tabla vehiculo={vehiculo_id_1} />
     </section>
     <span class="font-extrabold text-4xl text-tercero px-4">VS</span>
     <section class="text-center w-[45%]">
-      <h2 class="text-xl font-bold text-segundo mt-3">{vehiculo_id_2.marca} {vehiculo_id_2.modelo}</h2>
-      <Tabla vehiculo={vehiculo_id_2}/>
+      <h2 class="text-xl font-bold text-segundo mt-3">
+        {vehiculo_id_2.marca}
+        {vehiculo_id_2.modelo}
+      </h2>
+      <Tabla vehiculo={vehiculo_id_2} />
     </section>
   </main>
   <section class="max-w-screen-sm w-[80%] mx-auto pt-16">
     <!-- Pasamos los datos JSON al DOM usando data-* -->
-    <canvas id="comparativa-boxer" width="400" height="400" 
-      data-vehiculo1={JSON.stringify(vehiculo_id_1)} 
-      data-vehiculo2={JSON.stringify(vehiculo_id_2)}>
+    <canvas
+      id="comparativa-boxer"
+      width="400"
+      height="400"
+      data-vehiculo1={JSON.stringify(vehiculo_id_1)}
+      data-vehiculo2={JSON.stringify(vehiculo_id_2)}
+    >
     </canvas>
   </section>
 </Layout>
 
 <script>
-  import Chart from "chart.js/auto";
+  import Chart, { type ChartConfiguration } from "chart.js/auto";
 
-  document.addEventListener("DOMContentLoaded", function () {
-    // Obtenemos los datos desde los atributos data-* del canvas
-    const canvas = document.getElementById("comparativa-boxer");
+  function initializeChart() {
+    const canvas = document.getElementById(
+      "comparativa-boxer"
+    ) as HTMLCanvasElement;
     const vehiculo1 = JSON.parse(canvas.getAttribute("data-vehiculo1"));
     const vehiculo2 = JSON.parse(canvas.getAttribute("data-vehiculo2"));
-
-    console.log(vehiculo1, vehiculo2)
 
     const labels = [
       "Consumo de Combustible",
@@ -93,7 +117,7 @@ const labels = ["Consumo de Combustible", "Emisión de CO₂", "Capacidad de Car
       ],
     };
 
-    const config = {
+    const config: ChartConfiguration = {
       type: "radar",
       data: data,
       options: {
@@ -119,7 +143,9 @@ const labels = ["Consumo de Combustible", "Emisión de CO₂", "Capacidad de Car
       },
     };
 
-    const ctx = document.getElementById("comparativa-boxer") as HTMLCanvasElement;
-  new Chart(ctx, config);
-  });
+    new Chart(canvas, config);
+  }
+
+  document.addEventListener("DOMContentLoaded", initializeChart);
+  document.addEventListener("astro:page-load", initializeChart);
 </script>
