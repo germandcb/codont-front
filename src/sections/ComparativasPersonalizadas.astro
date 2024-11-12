@@ -58,11 +58,59 @@
     </div>
     <div class="mt-6">
       <button
+        id="calcularCO2"
         type="submit"
         class="w-full text-white bg-tercero hover:bg-tercero-dark focus:ring-4 focus:outline-none focus:ring-tercero-light font-medium rounded-lg text-sm px-5 py-2.5 text-center"
       >
-        Enviar
+        Calcular CO2
       </button>
     </div>
   </form>
 </section>
+
+<script>
+  const { FASTAPI_URL } = import.meta.env;
+
+  const huellaCarbono = {
+    kilometraje: 0,
+    eficiencia: 0,
+    combustible: "",
+  }
+
+  const calcularCL2 = document.getElementById("calcularCO2");
+
+  calcularCL2.addEventListener("click", (e) => {
+    e.preventDefault();
+    huellaCarbono.kilometraje = parseFloat((document.getElementById("kilometraje") as HTMLInputElement).value);
+    huellaCarbono.eficiencia = parseFloat((document.getElementById("eficiencia") as HTMLInputElement).value);
+    huellaCarbono.combustible = (document.getElementById("combustible") as HTMLSelectElement).value;
+
+    calcularHuellaDeCarbono();
+
+  });
+
+  async function calcularHuellaDeCarbono() {
+    const { kilometraje, eficiencia, combustible } = huellaCarbono;
+    
+    const datos = new FormData();
+    datos.append("kilometraje", kilometraje.toString());
+    datos.append("eficiencia", eficiencia.toString());
+    datos.append("combustible", combustible);
+
+    console.log(datos);
+
+    try {
+      const url = `${FASTAPI_URL}/huella-carbono`;
+      const respuesta = await fetch(url, {
+        method: "POST",
+        body: datos,
+      });
+
+      const resultado = await respuesta.json();
+      console.log(resultado);
+    } catch (error) {
+      console.error("Error al calcular la huella de carbono", error);
+    }
+  }
+
+</script>
