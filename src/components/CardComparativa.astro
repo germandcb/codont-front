@@ -6,12 +6,14 @@ interface Props {
         modelo: string
         anio: number
         eficiencia: number
+        tipo_vehiculo: string
     }
     vehiculo2: {
         marca: string
         modelo: string
         anio: number
         eficiencia: number
+        tipo_vehiculo: string
     }
 }
 const { id, vehiculo1, vehiculo2 } = Astro.props;
@@ -20,33 +22,29 @@ const { id, vehiculo1, vehiculo2 } = Astro.props;
 ---
 
 <article
-  class="bg-gray-50/10 transition-all hover:shadow-md shadow-sm rounded-lg px-8 py-4"
+  class="bg-gray-50/10 hover:bg-gray-50/20 rounded-sm transition-all px-8 py-4 max-w-96 w-full flex flex-col"
 >
-  <main class="flex items-center">
+  <main class="flex items-center justify-center">
     <section class="text-center">
-      <!-- <p class="bg-blue-500 text-white rounded-md">Moto</p> -->
-      <h2 class="text-xl font-bold text-segundo mt-3">
-        {vehiculo1.marca}
+      <p class="text-base text-quinto">{vehiculo1.tipo_vehiculo}</p>
+      <h2 class="text-xl font-bold text-white mt-3">
+        {vehiculo1.marca} <br>
         {vehiculo1.modelo}
       </h2>
-      <p class="text-gray-700">Año {vehiculo1.anio}</p>
-      <p class="text-gray-700">CO₂ {vehiculo1.eficiencia}</p>
     </section>
-    <span class="font-extrabold text-4xl text-tercero px-4">VS</span>
+    <span class="font-extrabold text-4xl text-quinto px-4">VS</span>
     <section class="text-center">
-      <!-- <p class="bg-blue-500 text-white rounded-md">Moto</p> -->
-      <h2 class="text-xl font-bold text-segundo mt-3">
-        {vehiculo2.marca}
+      <p class="text-base text-quinto">{vehiculo2.tipo_vehiculo}</p>
+      <h2 class="text-xl font-bold text-white mt-3">
+        {vehiculo2.marca} <br>
         {vehiculo2.modelo}
       </h2>
-      <p class="text-gray-700">Año {vehiculo2.anio}</p>
-      <p class="text-gray-700">CO₂ {vehiculo2.eficiencia}</p>
     </section>
   </main>
   <footer>
     <a
       href={`/comparativas/${id}`}
-      class="bg-segundo hover:bg-tercero transition-all block py-2 text-center text-white rounded-md mt-4 cursor-pointer"
+      class="bg-segundo hover:bg-tercero transition-all block w-full py-2 text-center text-white rounded-md mt-4 cursor-pointer"
     >
       Ver comparativa
     </a>
