@@ -1,27 +1,28 @@
 <section
   id="comparativas-personalizadas"
-  class="max-w-screen-xl w-[95%] mx-auto py-16 px-4 flex items-center flex-col"
+  class="py-36 px-4 flex items-center flex-col"
 >
-  <h2 class="text-primero font-bold text-4xl text-center">
-    Comparativas Personalizadas
-  </h2>
-  <p class="w-2/3 mt-3 text-center">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-    voluptates, veritatis voluptatem soluta repellendus accusamus voluptatum
-    harum dolore
-  </p>
-
-  <form class="flex items-center justify-center gap-4 mt-6">
+  <div class="max-w-screen-sm w-[95%] mx-auto">
+    <h2 class="text-white font-bold text-4xl text-center">
+      Comparativas Personalizadas
+    </h2>
+    <p class="mb-10 mt-3 text-base text-gray-200 text-center">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
+      voluptates, veritatis voluptatem soluta repellendus accusamus voluptatum
+      harum dolore
+    </p>
+  </div>
+  <form class="flex items-center justify-center gap-4 mt-3">
     <div>
       <label
         for="kilometraje"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-gray-200"
         >kilometraje a Recorrer</label
       >
       <input
         type="number"
         id="kilometraje"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tercero focus:border-tercero block w-full p-2.5"
+        class="bg-gray-700/70 placeholder:text-gray-300 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-cuarto focus:border-cuarto block w-full p-2.5"
         placeholder="Escribe los kilometros"
         required
       />
@@ -29,13 +30,13 @@
     <div>
       <label
         for="eficiencia"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-gray-200"
         >Indique la eficiencia</label
       >
       <input
         type="number"
         id="eficiencia"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tercero focus:border-tercero block w-full p-2.5"
+        class="bg-gray-700/70 placeholder:text-gray-300 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-cuarto focus:border-cuarto block w-full p-2.5"
         placeholder="Escribe la eficiencia"
         required
       />
@@ -43,12 +44,12 @@
     <div>
       <label
         for="combustible"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-gray-200"
         >Tipo de combustible</label
       >
       <select
         id="combustible"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tercero focus:border-tercero block w-full p-2.5"
+        class="bg-gray-700/70 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-cuarto focus:border-cuarto block w-full p-2.5"
         required
       >
         <option value="">Seleccione el tipo de combustible</option>
@@ -60,7 +61,7 @@
       <button
         id="calcularCO2"
         type="submit"
-        class="w-full text-white bg-tercero hover:bg-tercero-dark focus:ring-4 focus:outline-none focus:ring-tercero-light font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        class="w-full text-white bg-tercero focus:ring-1 focus:outline-none focus:ring-white/70 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
       >
         Calcular CO2
       </button>
@@ -75,23 +76,28 @@
     kilometraje: 0,
     eficiencia: 0,
     combustible: "",
-  }
+  };
 
   const calcularCL2 = document.getElementById("calcularCO2");
 
   calcularCL2.addEventListener("click", (e) => {
     e.preventDefault();
-    huellaCarbono.kilometraje = parseFloat((document.getElementById("kilometraje") as HTMLInputElement).value);
-    huellaCarbono.eficiencia = parseFloat((document.getElementById("eficiencia") as HTMLInputElement).value);
-    huellaCarbono.combustible = (document.getElementById("combustible") as HTMLSelectElement).value;
+    huellaCarbono.kilometraje = parseFloat(
+      (document.getElementById("kilometraje") as HTMLInputElement).value
+    );
+    huellaCarbono.eficiencia = parseFloat(
+      (document.getElementById("eficiencia") as HTMLInputElement).value
+    );
+    huellaCarbono.combustible = (
+      document.getElementById("combustible") as HTMLSelectElement
+    ).value;
 
     calcularHuellaDeCarbono();
-
   });
 
   async function calcularHuellaDeCarbono() {
     const { kilometraje, eficiencia, combustible } = huellaCarbono;
-    
+
     const datos = new FormData();
     datos.append("kilometraje", kilometraje.toString());
     datos.append("eficiencia", eficiencia.toString());
@@ -112,5 +118,4 @@
       console.error("Error al calcular la huella de carbono", error);
     }
   }
-
 </script>

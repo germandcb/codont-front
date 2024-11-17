@@ -7,18 +7,20 @@ const comparativasAutomaticas = await getComparativas();
 
 <section
   id="comparativas-recomendadas"
-  class="max-w-screen-xl w-[95%] mx-auto py-16 px-4 flex items-center flex-col"
+  class="py-36 px-4 flex items-center flex-col"
 >
-  <h2 class="text-primero font-bold text-4xl text-center">
-    Comparativas recomendadas
-  </h2>
-  <p class="w-2/3 mt-3 text-center">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-    voluptates, veritatis voluptatem soluta repellendus accusamus voluptatum
-    harum dolore
-  </p>
+  <div class="max-w-screen-sm w-[95%] mx-auto">
+    <h2 class="text-white font-bold text-4xl text-center">
+      Comparativas recomendadas
+    </h2>
+    <p class="mb-10 mt-3 text-base text-gray-200 text-center">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
+      voluptates, veritatis voluptatem soluta repellendus accusamus voluptatum
+      harum dolore
+    </p>
+  </div>
 
-  <div class="flex py-10 flex-wrap gap-4 justify-center">
+  <div class="flex py-10 flex-wrap gap-4 justify-center max-w-screen-xl w-[95%] mx-auto">
     {
       comparativasAutomaticas.map((comparativa) => {
         const { comparativa_id, vehiculo_id_1, vehiculo_id_2 } = comparativa;

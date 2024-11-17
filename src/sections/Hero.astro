@@ -1,93 +1,23 @@
-<section
-  class="max-w-screen-xl w-[95%] mx-auto py-16 px-4 md:px-16 grid grid-cols-2 gap-8 items-end"
->
+<section class="max-w-screen-sm w-[80%] mx-auto pt-40 pb-20 px-8 text-center">
   <div class="">
-    <h1 class="text-primero font-bold text-4xl mr-10">
+    <h1 class="text-white font-bold text-4xl">
       Ahorra costos a largo plazo y ayudanos a cuidar el planeta!
     </h1>
-    <p class="mb-10 mt-3 text-base text-gray-700 w-2/3">
+    <p class="mb-10 mt-3 text-base text-gray-200">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus nesciunt
       ea, veritatis omnis minus, repellat magni placeat nam quae eum itaque
     </p>
-    <a
-      class="bg-segundo py-3 px-6 text-white rounded-full hover:bg-tercero transition-all"
-      href="#comparativas-recomendadas"
-      >Ver Comparativas Automaticas
-    </a>
-  </div>
-  <div>
-    <canvas id="carbonFootprint"></canvas>
+    <div class="flex gap-3 justify-center">
+      <a
+        class="bg-segundo py-3 px-6 text-white rounded-full hover:bg-tercero transition-all"
+        href="#comparativas-recomendadas"
+        >Ver Comparativas Automaticas
+      </a>
+      <a
+        class="bg-segundo py-3 px-6 text-white rounded-full hover:bg-tercero transition-all"
+        href="#comparativas-recomendadas"
+        >Comparativa Personalizada
+      </a>
+    </div>
   </div>
 </section>
-
-<script>
-  import Chart, { type ChartConfiguration } from "chart.js/auto";
-
-  const labels = [2020, 2021, 2022, 2023];
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: "Motos (g CO₂/km)",
-        data: [167, 167, 167, 167],
-        fill: false,
-        borderColor: "rgb(54, 162, 235)",
-        tension: 0.1,
-      },
-      {
-        label: "Automóviles (g CO₂/km)",
-        data: [275, 275, 265, 260],
-        fill: false,
-        borderColor: "rgb(255, 99, 132)",
-        tension: 0.1,
-      },
-      {
-        label: "Vehículos de Carga (g CO₂/km)",
-        data: [1000, 1000, 980, 970],
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-    ],
-  };
-
-  const config: ChartConfiguration = {
-    type: "line",
-    data: data,
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: "Emisiones de CO₂ (g/km)",
-        },
-        legend: {
-          display: true,
-          position: "bottom",
-          labels: {
-            font: {
-              size: 10,
-            },
-          },
-        },
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            stepSize: 750, // Incremento de 250 en el eje Y
-          },
-          title: {
-            display: false,
-            text: "Emisiones de CO₂ (g/km)",
-          },
-        },
-      },
-    },
-  };
-
-  const canvas = document.getElementById(
-    "carbonFootprint"
-  ) as HTMLCanvasElement;
-
-  let grafico = new Chart(canvas, config);
-</script>
