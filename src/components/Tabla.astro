@@ -4,55 +4,55 @@ const {vehiculo} = Astro.props;
 // console.log(id, vehiculo1, vehiculo2);
 ---
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="relative overflow-x-auto backdrop-blur-3xl">
   <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-    <thead class="text-xs text-gray-700 uppercase">
+    <thead class="text-xs text-white uppercase">
       <tr>
-        <th scope="col" class="px-6 py-3 bg-gray-50"> Características </th>
+        <th scope="col" class="px-6 py-3 bg-gray-800/70"> Características </th>
         <th scope="col" class="px-6 py-3"> Valores </th>
       </tr>
     </thead>
     <tbody>
-      <tr class="border-b border-gray-200">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
+      <tr class="border-b border-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-200 bg-gray-800/70">
           Emisión de CO₂ (g/km)
         </th>
-        <td class="px-6 py-4"> {vehiculo.eficiencia} </td>
+        <td class="px-6 py-4 text-gray-100"> {vehiculo.eficiencia} </td>
       </tr>
-      <tr class="border-b border-gray-200">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
+      <tr class="border-b border-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-200 bg-gray-800/70">
           Consumo de Combustible (L/100Km)
         </th>
-        <td class="px-6 py-4"> {vehiculo.eficiencia} </td>
-      <tr class="border-b border-gray-200">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
+        <td class="px-6 py-4 text-gray-100"> {vehiculo.eficiencia} </td>
+      <tr class="border-b border-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-200 bg-gray-800/70">
           Capacidad de Carga (kg)
         </th>
-        <td class="px-6 py-4"> {vehiculo.capacidad_carga} </td>
+        <td class="px-6 py-4 text-gray-100"> {vehiculo.capacidad_carga} </td>
       </tr>
-      <tr class="border-b border-gray-200">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
+      <tr class="border-b border-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-200 bg-gray-800/70">
           Año
         </th>
-        <td class="px-6 py-4"> {vehiculo.anio} </td>
+        <td class="px-6 py-4 text-gray-100"> {vehiculo.anio} </td>
       </tr>
-      <tr class="border-b border-gray-200">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
+      <tr class="border-b border-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-200 bg-gray-800/70">
           Marca
         </th>
-        <td class="px-6 py-4"> {vehiculo.marca} </td>
+        <td class="px-6 py-4 text-gray-100"> {vehiculo.marca} </td>
       </tr>
-      <tr class="border-b border-gray-200">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
+      <tr class="border-b border-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-200 bg-gray-800/70">
           Tipo de Combustible
         </th>
-        <td class="px-6 py-4"> {vehiculo.tipo_combustible} </td>
+        <td class="px-6 py-4 text-gray-100"> {vehiculo.tipo_combustible} </td>
       </tr>
-      <tr class="border-b border-gray-200">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
+      <tr>
+        <th scope="row" class="px-6 py-4 font-medium text-gray-200 bg-gray-800/70">
           Tipo de Vehiculo
         </th>
-        <td class="px-6 py-4"> {vehiculo.tipo_vehiculo} </td>
+        <td class="px-6 py-4 text-gray-100"> {vehiculo.tipo_vehiculo} </td>
       </tr>
     </tbody>
   </table>

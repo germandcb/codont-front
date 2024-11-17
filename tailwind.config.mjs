@@ -11,7 +11,8 @@ export default {
 				segundo: '#124b58',
 				tercero: '#1f727d',
 				cuarto: '#37a7ac',
-				quinto: '#5eebe2'
+				quinto: '#5eebe2',
+				naranja: '#eb8c5e'
 			}
 		},
 	},
