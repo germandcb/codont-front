@@ -1,4 +1,19 @@
 ---
+interface Props {
+    id: string
+    vehiculo1: {
+        marca: string
+        modelo: string
+        anio: number
+        eficiencia: number
+    }
+    vehiculo2: {
+        marca: string
+        modelo: string
+        anio: number
+        eficiencia: number
+    }
+}
 const { id, vehiculo1, vehiculo2 } = Astro.props;
 
 // console.log(id, vehiculo1, vehiculo2);

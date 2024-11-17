@@ -1,21 +1,11 @@
 ---
 import Tabla from "../../components/Tabla.astro";
 import Layout from "../../layouts/Layout.astro";
-import type { GetStaticPaths } from "astro";
-import { getComparativas } from "../../lib/getComparativas";
+import { getComparativas, getComparativaById } from "../../lib/getComparativas";
 
-export async function getStaticPaths() {
-  const comparativas = await getComparativas();
+export const prerender = false;
+const { id } = Astro.params;
 
-  return comparativas.map((comparativa) => {
-    return {
-      params: { id: comparativa.comparativa_id.toString() },
-      props: { comparativa },
-    };
-  });
-}
-
-const { comparativa } = Astro.props;
 
 interface Vehiculo {
   marca: string;
@@ -25,16 +15,15 @@ interface Vehiculo {
   capacidad_carga: number;
 }
 
-const { vehiculo_id_1, vehiculo_id_2, comparativa_id } = comparativa as {
+let comparativa
+if (id) {
+  comparativa = await getComparativaById(id);
+}
+
+const { vehiculo_id_1, vehiculo_id_2 } = comparativa as {
   vehiculo_id_1: Vehiculo;
   vehiculo_id_2: Vehiculo;
-  comparativa_id: string;
 };
-const labels = [
-  "Consumo de Combustible",
-  "Emisión de CO₂",
-  "Capacidad de Carga",
-];
 ---
 
 <Layout title=`${vehiculo_id_1.marca} vs ${vehiculo_id_2.marca}` }>
