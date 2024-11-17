@@ -53,13 +53,24 @@ const { vehiculo_id_1, vehiculo_id_2 } = comparativa as {
   </main>
   <section class="max-w-screen-sm w-[80%] mx-auto pt-16">
     <!-- Pasamos los datos JSON al DOM usando data-* -->
-    <canvas
-      id="comparativa-boxer"
-      width="400"
-      height="400"
+    <div id="chart-container" 
       data-vehiculo1={JSON.stringify(vehiculo_id_1)}
       data-vehiculo2={JSON.stringify(vehiculo_id_2)}
-    >
+     class="flex justify-evenly items-center gap-6">
+    <div class="flex flex-col items-center">
+      <canvas id="chart-consumo" class="w-64 h-64"></canvas>
+      <p class="mt-2 text-center text-sm font-medium text-gray-700">Consumo de Combustible</p>
+    </div>
+    <div class="flex flex-col items-center">
+      <canvas id="chart-emisiones" class="w-64 h-64"></canvas>
+      <p class="mt-2 text-center text-sm font-medium text-gray-700">Emisión de CO₂</p>
+    </div>
+    <div class="flex flex-col items-center">
+      <canvas id="chart-capacidad" class="w-64 h-64"></canvas>
+      <p class="mt-2 text-center text-sm font-medium text-gray-700">Capacidad de Carga</p>
+    </div>
+  </div>
+
     </canvas>
   </section>
 </Layout>
@@ -67,74 +78,61 @@ const { vehiculo_id_1, vehiculo_id_2 } = comparativa as {
 <script>
   import Chart, { type ChartConfiguration } from "chart.js/auto";
 
-  function initializeChart() {
-    const canvas = document.getElementById(
-      "comparativa-boxer"
-    ) as HTMLCanvasElement;
-    const vehiculo1 = JSON.parse(canvas.getAttribute("data-vehiculo1"));
-    const vehiculo2 = JSON.parse(canvas.getAttribute("data-vehiculo2"));
+  function initializeCharts() {
+    const vehiculo1 = JSON.parse(document.getElementById("chart-container").getAttribute("data-vehiculo1"));
+    const vehiculo2 = JSON.parse(document.getElementById("chart-container").getAttribute("data-vehiculo2"));
 
-    const labels = [
-      "Consumo de Combustible",
-      "Emisión de CO₂",
-      "Capacidad de Carga",
-    ];
-
-    const data = {
-      labels: labels,
-      datasets: [
-        {
-          label: `${vehiculo1.marca} ${vehiculo1.modelo}`,
-          data: [
-            vehiculo1.consumo_combustible,
-            vehiculo1.eficiencia,
-            vehiculo1.capacidad_carga,
-          ],
-          borderColor: "rgb(255, 99, 132)",
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-        },
-        {
-          label: `${vehiculo2.marca} ${vehiculo2.modelo}`,
-          data: [
-            vehiculo2.consumo_combustible,
-            vehiculo2.eficiencia,
-            vehiculo2.capacidad_carga,
-          ],
-          borderColor: "rgb(54, 162, 235)",
-          backgroundColor: "rgba(54, 162, 235, 0.2)",
-        },
-      ],
-    };
-
-    const config: ChartConfiguration = {
-      type: "radar",
-      data: data,
+    const dataConfig = (label: string, data: number[]): ChartConfiguration => ({
+      type: "doughnut",
+      data: {
+        labels: [`${vehiculo1.marca} ${vehiculo1.modelo}`, `${vehiculo2.marca} ${vehiculo2.modelo}`],
+        datasets: [
+          {
+            label: label,
+            data: data,
+            backgroundColor: ["rgba(255, 99, 132, 0.5)", "rgba(54, 162, 235, 0.5)"],
+            borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+            borderWidth: 1,
+          },
+        ],
+      },
       options: {
         responsive: true,
         plugins: {
           title: {
-            display: false,
-            text: "Comparativa de Vehículos",
+            display: true,
+            text: label,
           },
-        },
-        scales: {
-          r: {
-            angleLines: {
-              display: false,
-            },
-            max: 100,
-            min: 0,
-            ticks: {
-              stepSize: 20,
-            },
+          legend: {
+            position: "bottom",
           },
         },
       },
-    };
+    });
 
-    new Chart(canvas, config);
+    const chartData = [
+      {
+        id: "chart-consumo",
+        label: "Consumo de Combustible (L/100Km)",
+        data: [vehiculo1.consumo_combustible, vehiculo2.consumo_combustible],
+      },
+      {
+        id: "chart-emisiones",
+        label: "Emisión de CO₂ (g/km)",
+        data: [vehiculo1.eficiencia, vehiculo2.eficiencia],
+      },
+      {
+        id: "chart-capacidad",
+        label: "Capacidad de Carga (kg)",
+        data: [vehiculo1.capacidad_carga, vehiculo2.capacidad_carga],
+      },
+    ];
+
+    chartData.forEach(({ id, label, data }) => {
+      const canvas = document.getElementById(id) as HTMLCanvasElement;
+      new Chart(canvas, dataConfig(label, data));
+    });
   }
-
-  document.addEventListener("DOMContentLoaded", initializeChart);
-  document.addEventListener("astro:page-load", initializeChart);
+  document.addEventListener("DOMContentLoaded", initializeCharts);
+  document.addEventListener("astro:page-load", initializeCharts);
 </script>
