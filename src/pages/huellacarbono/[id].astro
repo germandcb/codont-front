@@ -1,0 +1,38 @@
+---
+interface HuellaCarbono {
+    tipo_combustible: string
+    huella_carbono_id: number
+    kilometros_recorridos: number
+    indice_eficiencia: number
+}
+
+import LayoutComparativa from "../../layouts/LayoutComparativa.astro";
+import { getHuellacarbonoById } from "../../lib/getHuellaCarbono";
+
+export const prerender = false;
+const { id } = Astro.params;
+
+
+let huellacarbono
+if (id) {
+  huellacarbono = await getHuellacarbonoById(id);
+}
+
+const { tipo_combustible, kilometros_recorridos, indice_eficiencia } = huellacarbono as HuellaCarbono;
+---
+
+<LayoutComparativa title="Huella de Carbono">
+  <header class="max-w-screen-lg w-[80%] mx-auto pt-16">
+    <a
+      href="/"
+      class="bg-segundo py-3 px-6 text-white rounded-full hover:bg-tercero transition-all"
+      >Volver</a
+    >
+    <h1 class="text-4xl font-extrabold text-white text-center mt-10">
+      Huella de carbono
+    </h1>
+  </header>
+  <main class="py-16 max-w-screen-lg w-[80%] mx-auto text-center text-white ">
+    <p>Huella de carbono que genera el vehiculo recorriendo {kilometros_recorridos}KM es de {indice_eficiencia}</p>
+  </main>
+</LayoutComparativa>
