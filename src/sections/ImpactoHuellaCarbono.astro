@@ -4,13 +4,11 @@
   >
     <div>
       <h2 class="text-white font-bold text-4xl">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Impacto ambiental en cifras
       </h2>
       <p class="mb-10 mt-3 text-base text-gray-200">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo totam iure
-        blanditiis. Ea pariatur quisquam culpa dolores provident dignissimos
-        saepe assumenda, repudiandae excepturi consequuntur eius numquam.
-        Pariatur laborum quae aliquam.
+        Compara la generación de carbono de cada tipo de vehículo que ves en tu día a día o en tu lugar de trabajo. 
+        Toma decisiones con base en datos reales y transparentes.
       </p>
     </div>
     <div>
@@ -21,84 +19,128 @@
 
 <script>
   import Chart, { type ChartConfiguration } from "chart.js/auto";
+  
+  // function initializeChart() {
+  //   const labels = [2020, 2021, 2022, 2023];
+  //   const data = {
+  //     labels: labels,
+  //     datasets: [
+  //       {
+  //         label: "Motos (g CO₂/km)",
+  //         data: [167, 167, 167, 167],
+  //         borderColor: "#5eebe2",
+  //         backgroundColor: "rgba(94,235,226,0.4)",
+  //         borderWidth: 2,
+  //         borderRadius: 5,
+  //         borderSkipped: false,
+  //       },
+  //       {
+  //         label: "Automóviles (g CO₂/km)",
+  //         data: [275, 275, 265, 260],
+  //         borderColor: "#e7eb5e",
+  //         backgroundColor: "rgba(231,235,94,0.4)",
+  //         borderWidth: 2,
+  //         borderRadius: 5,
+  //         borderSkipped: false,
+  //       },
+  //       {
+  //         label: "Vehículos de Carga (g CO₂/km)",
+  //         data: [1000, 1000, 980, 970],
+  //         borderColor: "#eb5e5e",
+  //         backgroundColor: "rgba(235,94,94,0.4)",
+  //         borderWidth: 2,
+  //         borderRadius: 5,
+  //         borderSkipped: false,
+  //       },
+  //     ],
+  //   };
 
-  function initializeChart() {
-    const labels = [2020, 2021, 2022, 2023];
-    const data = {
-      labels: labels,
-      datasets: [
-        {
-          label: "Motos (g CO₂/km)",
-          data: [167, 167, 167, 167],
-          borderColor: "#5eebe2",
-          backgroundColor: "rgba(94,235,226,0.4)",
-          borderWidth: 2,
-          borderRadius: 5,
-          borderSkipped: false,
-        },
-        {
-          label: "Automóviles (g CO₂/km)",
-          data: [275, 275, 265, 260],
-          borderColor: "#e7eb5e",
-          backgroundColor: "rgba(231,235,94,0.4)",
-          borderWidth: 2,
-          borderRadius: 5,
-          borderSkipped: false,
-        },
-        {
-          label: "Vehículos de Carga (g CO₂/km)",
-          data: [1000, 1000, 980, 970],
-          borderColor: "#eb5e5e",
-          backgroundColor: "rgba(235,94,94,0.4)",
-          borderWidth: 2,
-          borderRadius: 5,
-          borderSkipped: false,
-        },
+  //   const config: ChartConfiguration = {
+  //     type: "bar",
+  //     data: data,
+  //     options: {
+  //       responsive: true,
+  //       plugins: {
+  //         title: {
+  //           display: false,
+  //           text: "Emisiones de CO₂ (g/km)",
+  //         },
+  //         legend: {
+  //           display: true,
+  //           position: "top",
+  //           labels: {
+  //             font: {
+  //               size: 10,
+  //             },
+  //           },
+  //         },
+  //       },
+  //       scales: {
+  //         y: {
+  //           beginAtZero: true,
+  //           ticks: {
+  //             stepSize: 520, // Incremento de 250 en el eje Y
+  //           },
+  //           title: {
+  //             display: false,
+  //             text: "Emisiones de CO₂ (g/km)",
+  //           },
+  //         },
+  //       },
+  //     },
+  //   };
+
+  //   const canvas = document.getElementById(
+  //     "carbonFootprint"
+  //   ) as HTMLCanvasElement;
+
+  //   let grafico = new Chart(canvas, config);
+  // }
+
+  // document.addEventListener("DOMContentLoaded", initializeChart);
+  // document.addEventListener("astro:page-load", initializeChart);
+
+  const ctx = (document.getElementById('carbonFootprint') as HTMLCanvasElement).getContext('2d');
+
+new Chart(ctx, {
+  type: 'polarArea',
+  data: {
+    labels: ['Moto', 'Carro particular', 'Camioneta', 'Furgoneta', 'Furgón'],
+    datasets: [{
+      label: 'Emisiones promedio de CO₂ (g/km)',
+      data: [70, 200, 250, 300, 400], // Valores promedio
+      backgroundColor: [
+        'rgba(75, 192, 192, 0.5)', // Moto
+        'rgba(255, 99, 132, 0.5)', // Carro particular
+        'rgba(255, 206, 86, 0.5)', // Camioneta
+        'rgba(54, 162, 235, 0.5)', // Furgoneta
+        'rgba(153, 102, 255, 0.5)'  // Furgón
       ],
-    };
-
-    const config: ChartConfiguration = {
-      type: "bar",
-      data: data,
-      options: {
-        responsive: true,
-        plugins: {
-          title: {
-            display: false,
-            text: "Emisiones de CO₂ (g/km)",
-          },
-          legend: {
-            display: true,
-            position: "top",
-            labels: {
-              font: {
-                size: 10,
-              },
-            },
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              stepSize: 520, // Incremento de 250 en el eje Y
-            },
-            title: {
-              display: false,
-              text: "Emisiones de CO₂ (g/km)",
-            },
-          },
-        },
-      },
-    };
-
-    const canvas = document.getElementById(
-      "carbonFootprint"
-    ) as HTMLCanvasElement;
-
-    let grafico = new Chart(canvas, config);
+      borderColor: [
+        'rgba(75, 192, 192, 1)',
+        'rgba(255, 99, 132, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(153, 102, 255, 1)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top'
+      }
+    },
+    scales: {
+      r: {
+        beginAtZero: true,
+        suggestedMax: 400 // Ajuste del rango máximo
+      }
+    }
   }
+});
 
-  document.addEventListener("DOMContentLoaded", initializeChart);
-  document.addEventListener("astro:page-load", initializeChart);
 </script>
