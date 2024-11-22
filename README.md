@@ -1,54 +1,39 @@
-# Astro Starter Kit: Basics
+# Proyecto Frontend de Codont
 
-```sh
-npm create astro@latest -- --template basics
-```
+¡Bienvenido al Proyecto Frontend de Codont! Este proyecto está construido utilizando tecnologías modernas de desarrollo web para crear una aplicación frontend robusta y escalable.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## 🚀 Introducción
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Este proyecto es una aplicación frontend diseñada para proporcionar una interfaz de usuario intuitiva y receptiva. Aprovecha el poder de Astro, un moderno generador de sitios estáticos, para entregar páginas web rápidas y optimizadas. El proyecto está estructurado para facilitar el desarrollo y mantenimiento, con un enfoque en la modularidad y reutilización.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## 🛠️ Tecnologías Utilizadas
 
-## 🚀 Project Structure
+- **Astro**: Un moderno generador de sitios estáticos para páginas web rápidas y optimizadas.
+- **Tailwind CSS**: Un framework CSS de utilidad para un desarrollo rápido de interfaces de usuario.
+- **Chart.js**: Una librería JavaScript para crear gráficos.
+- **Flowbite**: Componentes UI construidos sobre Tailwind CSS.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📦 Dependencias
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+El proyecto depende de las siguientes librerías:
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- `astro`: El paquete principal de Astro.
+- `@astrojs/tailwind`: Integración de Tailwind CSS con Astro.
+- `@fontsource-variable/montserrat`: Fuentes Montserrat.
+- `chart.js`: Librería para gráficos.
+- `chartjs-chart-error-bars`: Extensión de Chart.js para barras de error.
+- `flowbite`: Componentes UI para Tailwind CSS.
+- `tailwindcss`: El framework CSS de utilidad.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🧞 Comandos
 
-Any static assets, like images, can be placed in the `public/` directory.
+Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
+| Comando                   | Acción                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| `npm install`             | Instala las dependencias                         |
+| `npm run dev`             | Inicia el servidor de desarrollo local en `localhost:4321` |
+| `npm run build`           | Construye el sitio de producción en `./dist/`    |
+| `npm run preview`         | Previsualiza tu construcción localmente, antes de desplegar |
+| `npm run astro ...`       | Ejecuta comandos CLI como `astro add`, `astro check` |
+| `npm run astro -- --help` | Obtén ayuda usando el CLI de Astro               |
