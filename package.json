@@ -16,6 +16,10 @@
     "chart.js": "^4.4.6",
     "chartjs-chart-error-bars": "^4.4.4",
     "flowbite": "^2.5.2",
+    "marked": "^15.0.2",
     "tailwindcss": "^3.4.14"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15"
   }
 }
