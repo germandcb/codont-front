@@ -19,90 +19,11 @@
 
 <script>
   import Chart, { type ChartConfiguration } from "chart.js/auto";
+
+function initializeChart(){
   
-  // function initializeChart() {
-  //   const labels = [2020, 2021, 2022, 2023];
-  //   const data = {
-  //     labels: labels,
-  //     datasets: [
-  //       {
-  //         label: "Motos (g CO₂/km)",
-  //         data: [167, 167, 167, 167],
-  //         borderColor: "#5eebe2",
-  //         backgroundColor: "rgba(94,235,226,0.4)",
-  //         borderWidth: 2,
-  //         borderRadius: 5,
-  //         borderSkipped: false,
-  //       },
-  //       {
-  //         label: "Automóviles (g CO₂/km)",
-  //         data: [275, 275, 265, 260],
-  //         borderColor: "#e7eb5e",
-  //         backgroundColor: "rgba(231,235,94,0.4)",
-  //         borderWidth: 2,
-  //         borderRadius: 5,
-  //         borderSkipped: false,
-  //       },
-  //       {
-  //         label: "Vehículos de Carga (g CO₂/km)",
-  //         data: [1000, 1000, 980, 970],
-  //         borderColor: "#eb5e5e",
-  //         backgroundColor: "rgba(235,94,94,0.4)",
-  //         borderWidth: 2,
-  //         borderRadius: 5,
-  //         borderSkipped: false,
-  //       },
-  //     ],
-  //   };
-
-  //   const config: ChartConfiguration = {
-  //     type: "bar",
-  //     data: data,
-  //     options: {
-  //       responsive: true,
-  //       plugins: {
-  //         title: {
-  //           display: false,
-  //           text: "Emisiones de CO₂ (g/km)",
-  //         },
-  //         legend: {
-  //           display: true,
-  //           position: "top",
-  //           labels: {
-  //             font: {
-  //               size: 10,
-  //             },
-  //           },
-  //         },
-  //       },
-  //       scales: {
-  //         y: {
-  //           beginAtZero: true,
-  //           ticks: {
-  //             stepSize: 520, // Incremento de 250 en el eje Y
-  //           },
-  //           title: {
-  //             display: false,
-  //             text: "Emisiones de CO₂ (g/km)",
-  //           },
-  //         },
-  //       },
-  //     },
-  //   };
-
-  //   const canvas = document.getElementById(
-  //     "carbonFootprint"
-  //   ) as HTMLCanvasElement;
-
-  //   let grafico = new Chart(canvas, config);
-  // }
-
-  // document.addEventListener("DOMContentLoaded", initializeChart);
-  // document.addEventListener("astro:page-load", initializeChart);
-
   const ctx = (document.getElementById('carbonFootprint') as HTMLCanvasElement).getContext('2d');
-
-new Chart(ctx, {
+  new Chart(ctx, {
   type: 'polarArea',
   data: {
     labels: ['Moto', 'Carro particular', 'Camioneta', 'Furgoneta', 'Furgón'],
@@ -142,5 +63,9 @@ new Chart(ctx, {
     }
   }
 });
+}
+
+document.addEventListener("DOMContentLoaded", initializeChart);
+document.addEventListener("astro:page-load", initializeChart);
 
 </script>
