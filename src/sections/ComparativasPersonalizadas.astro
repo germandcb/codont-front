@@ -100,10 +100,15 @@ import { post } from "../lib/fastapi";
   async function calcularHuellaDeCarbono() {
     const { kilometros_recorridos, indice_eficiencia, tipo_combustible } = huellaCarbono;
 
-    // const datos = new FormData();
-    // datos.append("kilometraje", kilometraje.toString());
-    // datos.append("eficiencia", eficiencia.toString());
-    // datos.append("combustible", combustible);
+    // Mostrar mensaje de espera con transición
+    const formSection = document.querySelector("form");
+    formSection.style.transition = "opacity 0.5s ease-in-out";
+    formSection.style.opacity = "0";
+
+    setTimeout(() => {
+      formSection.innerHTML = "<p class='text-white text-center'>Se están analizando los datos, esto llevará unos segundos. Por favor, espere un momento.</p>";
+      formSection.style.opacity = "1";
+    }, 500);
 
     try {
       const resultado = await post("calcular-co2", huellaCarbono);
