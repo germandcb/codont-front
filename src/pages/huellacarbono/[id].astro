@@ -4,9 +4,14 @@ interface HuellaCarbono {
     huella_carbono_id: number
     kilometros_recorridos: number
     indice_eficiencia: number
+<<<<<<< HEAD
     huella_carbono: number
+=======
+    hallazgos: string
+>>>>>>> 8262c94383d6a7dd7727586be08f6a036b00bc69
 }
 
+import Markdown from "../../components/Markdown.astro"
 import LayoutComparativa from "../../layouts/LayoutComparativa.astro";
 import { getHuellacarbonoById } from "../../lib/getHuellaCarbono";
 
@@ -19,7 +24,11 @@ if (id) {
   huellacarbono = await getHuellacarbonoById(id);
 }
 
+<<<<<<< HEAD
 const { tipo_combustible, kilometros_recorridos, huella_carbono} = huellacarbono as HuellaCarbono;
+=======
+const { tipo_combustible, kilometros_recorridos, indice_eficiencia, hallazgos } = huellacarbono as HuellaCarbono;
+>>>>>>> 8262c94383d6a7dd7727586be08f6a036b00bc69
 ---
 
 <LayoutComparativa title="Huella de Carbono">
@@ -33,7 +42,12 @@ const { tipo_combustible, kilometros_recorridos, huella_carbono} = huellacarbono
       Huella de carbono
     </h1>
   </header>
+<<<<<<< HEAD
   <main class="py-16 max-w-screen-lg w-[80%] mx-auto text-center text-white ">
     <p class="text-xl">La huella de carbono que genera el vehiculo tras recorrer <span class="text-2xl font-extrabold text-naranja">{kilometros_recorridos} KM</span> es de <span class="text-2xl font-extrabold text-quinto">{huella_carbono} gramos</span>.</p>
+=======
+  <main class="">
+    <Markdown content={hallazgos} />
+>>>>>>> 8262c94383d6a7dd7727586be08f6a036b00bc69
   </main>
 </LayoutComparativa>

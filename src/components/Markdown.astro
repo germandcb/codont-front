@@ -1,0 +1,17 @@
+---
+import { marked } from "marked";
+
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+
+const formatMarkdown = (content: string) => {
+  return marked(content);
+};
+---
+
+<div
+  class="prose text-gray-50 [&>p>strong]:text-quinto [&>p>strong]:text-2xl [&>p>strong]:font-bold [&>h2]:text-quinto [&>h2]:text-2xl [&>h2]:font-bold [&>ul>li>strong]:text-quinto  py-16 max-w-screen-lg w-[80%] mx-auto"
+  set:html={formatMarkdown(content)}></div>
