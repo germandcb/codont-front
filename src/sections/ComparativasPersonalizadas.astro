@@ -7,7 +7,7 @@ export const prerender = false
 >
   <div class="max-w-screen-sm w-[95%] mx-auto">
     <h2 class="text-white font-bold text-4xl text-center">
-      Calcula la huella de carbono de tu vehículo
+      Calcula la huella de carbono de tu vehículo con <span class="text-quinto">IA</span>
     </h2>
     <p class="mb-10 mt-3 text-base text-gray-200 text-center">
       Personaliza los datos para analizar vehículos específicos según tu uso y necesidades. Descubre cuál es más eficiente, económico y respetuoso con el medio ambiente.
@@ -80,7 +80,8 @@ import { post } from "../lib/fastapi";
     "tipo_combustible": "",
   };
 
-  const calcularCL2 = document.getElementById("calcularCO2");
+  function inicializar_formulario(){
+    const calcularCL2 = document.getElementById("calcularCO2");
 
   calcularCL2.addEventListener("click", (e) => {
     e.preventDefault();
@@ -119,4 +120,7 @@ import { post } from "../lib/fastapi";
       console.error("Error al calcular la huella de carbono", error);
     }
   }
+  }
+
+  document.addEventListener("astro:page-load", inicializar_formulario);
 </script>
