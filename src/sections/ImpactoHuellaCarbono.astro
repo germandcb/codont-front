@@ -3,11 +3,12 @@
     class="max-w-screen-xl w-[80%] mx-auto pt-36 px-8 grid grid-cols-2 items-center gap-8"
   >
     <div>
-      <h2 class="text-white font-bold text-4xl">Impacto ambiental en cifras</h2>
+      <h2 class="text-white font-bold text-4xl">
+        Impacto ambiental en cifras
+      </h2>
       <p class="mb-10 mt-3 text-base text-gray-200">
-        Compara la generación de carbono de cada tipo de vehículo que ves en tu
-        día a día o en tu lugar de trabajo. Toma decisiones con base en datos
-        reales y transparentes.
+        Compara la generación de carbono de cada tipo de vehículo que ves en tu día a día o en tu lugar de trabajo. 
+        Toma decisiones con base en datos reales y transparentes.
       </p>
     </div>
     <div>
@@ -19,61 +20,52 @@
 <script>
   import Chart, { type ChartConfiguration } from "chart.js/auto";
 
-  function initializeCharts() {
-    const ctx = (
-      document.getElementById("carbonFootprint") as HTMLCanvasElement
-    ).getContext("2d");
-
-    new Chart(ctx, {
-      type: "polarArea",
-      data: {
-        labels: [
-          "Moto",
-          "Carro particular",
-          "Camioneta",
-          "Furgoneta",
-          "Furgón",
-        ],
-        datasets: [
-          {
-            label: "Emisiones promedio de CO₂ (g/km)",
-            data: [70, 200, 250, 300, 400], // Valores promedio
-            backgroundColor: [
-              "rgba(75, 192, 192, 0.5)", // Moto
-              "rgba(255, 99, 132, 0.5)", // Carro particular
-              "rgba(255, 206, 86, 0.5)", // Camioneta
-              "rgba(54, 162, 235, 0.5)", // Furgoneta
-              "rgba(153, 102, 255, 0.5)", // Furgón
-            ],
-            borderColor: [
-              "rgba(75, 192, 192, 1)",
-              "rgba(255, 99, 132, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(153, 102, 255, 1)",
-            ],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: "top",
-          },
-        },
-        scales: {
-          r: {
-            beginAtZero: true,
-            suggestedMax: 400, // Ajuste del rango máximo
-          },
-        },
-      },
-    });
+function initializeChart(){
+  
+  const ctx = (document.getElementById('carbonFootprint') as HTMLCanvasElement).getContext('2d');
+  new Chart(ctx, {
+  type: 'polarArea',
+  data: {
+    labels: ['Moto', 'Carro particular', 'Camioneta', 'Furgoneta', 'Furgón'],
+    datasets: [{
+      label: 'Emisiones promedio de CO₂ (g/km)',
+      data: [70, 200, 250, 300, 400], // Valores promedio
+      backgroundColor: [
+        'rgba(75, 192, 192, 0.5)', // Moto
+        'rgba(255, 99, 132, 0.5)', // Carro particular
+        'rgba(255, 206, 86, 0.5)', // Camioneta
+        'rgba(54, 162, 235, 0.5)', // Furgoneta
+        'rgba(153, 102, 255, 0.5)'  // Furgón
+      ],
+      borderColor: [
+        'rgba(75, 192, 192, 1)',
+        'rgba(255, 99, 132, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(153, 102, 255, 1)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top'
+      }
+    },
+    scales: {
+      r: {
+        beginAtZero: true,
+        suggestedMax: 400 // Ajuste del rango máximo
+      }
+    }
   }
+});
+}
 
-  document.addEventListener("DOMContentLoaded", initializeCharts);
-  document.addEventListener("astro:page-load", initializeCharts);
+document.addEventListener("DOMContentLoaded", initializeChart);
+document.addEventListener("astro:page-load", initializeChart);
+
 </script>
